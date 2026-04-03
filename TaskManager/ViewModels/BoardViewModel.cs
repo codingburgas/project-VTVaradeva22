@@ -1,6 +1,6 @@
 ﻿namespace TaskManager.ViewModels;
 
-public class DashboardViewModel
+public class BoardViewModel
 {
     
 }
