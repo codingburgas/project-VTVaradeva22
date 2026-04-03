@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Data.Context;
 using TaskManager.Models.Entities;
+using TaskManager.Repositories;
+using TaskManager.Services.Implementations;
+using TaskManager.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,5 +43,8 @@ app.Run();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IBoardRepository, BoardRepository>();
+builder.Services.AddScoped<IBoardService, BoardService>();
 
 
