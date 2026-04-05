@@ -21,3 +21,4 @@ namespace TaskManager.Models.Entities
         public Board Board { get; set; }
     }
 }
+
