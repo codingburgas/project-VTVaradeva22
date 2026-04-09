@@ -1,10 +1,10 @@
 :root {
-  --tm-primary: #0e7490;
-  --tm-primary-dark: #155e75;
-  --tm-accent: #f59e0b;
+  --tm-primary: #8b5cf6;
+  --tm-primary-dark: #6d28d9;
+  --tm-accent: #c084fc;
   --tm-surface: #ffffff;
   --tm-muted: #64748b;
-  --tm-bg: linear-gradient(180deg, #eff6ff 0%, #f8fafc 45%, #eef2ff 100%);
+  --tm-bg: linear-gradient(180deg, #f5f3ff 0%, #faf5ff 45%, #f3e8ff 100%);
 }
 
 html {
@@ -36,7 +36,7 @@ h3, .h3 {
 }
 
 .app-header {
-  background: linear-gradient(135deg, var(--tm-primary-dark), #1d4ed8);
+  background: linear-gradient(135deg, #5b21b6, var(--tm-primary));
   padding: 0.45rem 0;
 }
 
@@ -66,8 +66,8 @@ h3, .h3 {
 }
 
 .hero-card {
-  background: linear-gradient(145deg, #ffffff, #dbeafe);
-  border: 1px solid rgba(14, 116, 144, 0.12);
+  background: linear-gradient(145deg, #ffffff, #efe7ff);
+  border: 1px solid rgba(139, 92, 246, 0.16);
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
   padding: 3rem !important;
 }
@@ -104,7 +104,7 @@ h3, .h3 {
 .feature-item {
   padding: 1.35rem;
   background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(14, 116, 144, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.12);
 }
 
 .feature-item h5 {
