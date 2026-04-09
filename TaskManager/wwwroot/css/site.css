@@ -8,7 +8,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 19px;
   min-height: 100%;
 }
 
@@ -16,10 +16,28 @@ body {
   min-height: 100vh;
   background: var(--tm-bg);
   color: #0f172a;
+  line-height: 1.65;
+}
+
+h1, .h1 {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+}
+
+h2, .h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+h3, .h3 {
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+}
+
+.container {
+  max-width: 1460px;
 }
 
 .app-header {
   background: linear-gradient(135deg, var(--tm-primary-dark), #1d4ed8);
+  padding: 0.45rem 0;
 }
 
 .navbar-brand,
@@ -27,15 +45,52 @@ body {
   letter-spacing: 0.02em;
 }
 
+.navbar-brand {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.nav-link {
+  font-size: 1.14rem;
+  padding: 0.85rem 1rem !important;
+}
+
+.navbar .btn {
+  font-size: 1.02rem;
+  padding: 0.65rem 1rem;
+}
+
+.auth-nav-btn {
+  font-size: 1.18rem;
+  padding: 0.82rem 1.35rem;
+}
+
 .hero-card {
   background: linear-gradient(145deg, #ffffff, #dbeafe);
   border: 1px solid rgba(14, 116, 144, 0.12);
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  padding: 3rem !important;
+}
+
+.hero-card h1 {
+  font-size: clamp(3rem, 5vw, 4.6rem);
+  line-height: 1.08;
+  max-width: 10ch;
+}
+
+.hero-card .lead {
+  font-size: 1.38rem;
+  max-width: 34ch;
+}
+
+.hero-card .btn-lg {
+  font-size: 1.15rem;
+  padding: 0.9rem 1.4rem;
 }
 
 .feature-panel {
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .feature-item,
@@ -47,14 +102,20 @@ body {
 }
 
 .feature-item {
-  padding: 1rem;
+  padding: 1.35rem;
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(14, 116, 144, 0.08);
+}
+
+.feature-item h5 {
+  font-size: 1.45rem;
+  margin-bottom: 0.75rem;
 }
 
 .feature-item p {
   margin-bottom: 0;
   color: var(--tm-muted);
+  font-size: 1.12rem;
 }
 
 .stat-card {
@@ -68,7 +129,7 @@ body {
 .stat-card span {
   display: block;
   color: var(--tm-muted);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .stat-card strong {
@@ -123,6 +184,11 @@ body {
   cursor: grab;
 }
 
+.kanban-card .h6,
+.kanban-card h3 {
+  font-size: 1.05rem;
+}
+
 .kanban-card:active {
   cursor: grabbing;
 }
@@ -133,7 +199,82 @@ body {
 }
 
 .auth-card {
-  max-width: 520px;
+  max-width: 760px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.08) !important;
+}
+
+.auth-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.25rem 0 2rem;
+}
+
+.auth-page .card-body {
+  padding: 2.5rem !important;
+}
+
+.auth-title {
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.auth-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1.6rem;
+}
+
+.auth-page .form-label {
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+
+.auth-page .form-control {
+  min-height: 3.3rem;
+  font-size: 1.08rem;
+}
+
+.auth-page .form-check-label,
+.auth-page .form-check-input,
+.auth-page .text-danger {
+  font-size: 1rem;
+}
+
+.auth-submit-btn {
+  font-size: 1.12rem;
+  padding: 0.9rem 1.2rem;
+}
+
+.card-body,
+.table,
+.form-label,
+.form-control,
+.form-select,
+.btn,
+.badge,
+.small,
+p,
+li {
+  font-size: 1.04rem;
+}
+
+.form-control,
+.form-select {
+  padding: 0.8rem 0.95rem;
+}
+
+.btn {
+  padding: 0.65rem 1rem;
+}
+
+.btn-sm {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+.lead {
+  font-size: 1.22rem;
 }
 
 .footer {
@@ -163,6 +304,18 @@ body {
 
 @media (max-width: 767.98px) {
   .hero-card {
-    padding: 1.5rem;
+    padding: 1.75rem !important;
+  }
+
+  .hero-card h1 {
+    font-size: clamp(2.4rem, 9vw, 3.2rem);
+  }
+
+  .hero-card .lead {
+    font-size: 1.15rem;
+  }
+
+  .auth-page .card-body {
+    padding: 1.6rem !important;
   }
 }
