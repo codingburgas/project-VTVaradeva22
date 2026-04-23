@@ -2,6 +2,10 @@
 
 TaskManager is an ASP.NET Core MVC web application inspired by Trello and Kanban workflow. The system allows users to create boards, manage lists, track tasks, and monitor project progress with a dashboard.
 
+## Documentation
+
+- [Download Project Presentation](Documentation/Presentation.pptx)
+
 ## Main Features
 
 - Authentication and authorization with ASP.NET Core Identity
@@ -49,4 +53,3 @@ TaskManager is an ASP.NET Core MVC web application inspired by Trello and Kanban
 ## Notes
 
 - The current default connection string uses `LocalDB`. If your machine uses `SQLEXPRESS`, replace the server name in `appsettings.json`.
-
