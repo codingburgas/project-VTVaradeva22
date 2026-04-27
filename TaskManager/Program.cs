@@ -10,12 +10,12 @@ using TaskManager.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register the main app database.
+// Register the main app database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services
-    // Configure login, roles, and password rules.
+    // Configure login, roles, and password rules
     .AddIdentity<ApplicationUser, IdentityRole>(options =>
     {
         options.Password.RequireDigit = true;
@@ -27,7 +27,7 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-// Tell the app where to send users for login and access errors.
+// Configures login, logout, and access denied routes for cookie authentication
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
@@ -35,13 +35,13 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
-// Turn on MVC and add anti-forgery protection for form posts.
+// Turning on MVC and adding anti-forgery protection for form posts
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
 });
 
-// Register app services and data access classes.
+// Registers interfaces with their corresponding implementations in the DI container
 builder.Services.AddScoped<IBoardRepository, BoardRepository>();
 builder.Services.AddScoped<IBoardService, BoardService>();
 builder.Services.AddScoped<IBoardListService, BoardListService>();
@@ -49,11 +49,13 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+// Builds the HTTP request processing pipeline for the application
 var app = builder.Build();
 
-// Create roles, demo users, and demo board data on startup.
+// Create roles, demo users, and demo board data on startup
 await DatabaseSeeder.SeedAsync(app);
 
+// Production error
 if (!app.Environment.IsDevelopment())
 {
     // Use a friendly error page outside development.
@@ -61,13 +63,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// Standard ASP.NET Core middleware pipeline.
+// Standard ASP.NET Core middleware pipeline
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Sets the default route to Home/Index
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

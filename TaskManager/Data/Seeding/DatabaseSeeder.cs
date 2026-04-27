@@ -10,9 +10,10 @@ namespace TaskManager.Data.Seeding;
 
 public static class DatabaseSeeder
 {
+    // SeedAsync is main seed entry point
     public static async Task SeedAsync(WebApplication app)
     {
-        // Create a small service scope so we can resolve DbContext and Identity services.
+        // Creates a DI scope and retrieves ApplicationDbContext, RoleManager, and UserManager.
         using var scope = app.Services.CreateScope();
 
         var services = scope.ServiceProvider;
@@ -20,10 +21,10 @@ public static class DatabaseSeeder
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
-        // Apply pending migrations before adding demo data.
+        // Apply pending migrations before adding demo data
         await context.Database.MigrateAsync();
 
-        // Make sure the main roles are always present.
+        // Make sure the main roles are always present
         foreach (var role in new[] { RoleNames.Admin, RoleNames.User })
         {
             if (!await roleManager.RoleExistsAsync(role))
@@ -39,7 +40,7 @@ public static class DatabaseSeeder
             "Project Admin",
             RoleNames.Admin);
 
-        // Create one normal user for testing the user role.
+        // Created one normal user for testing the user role
         var demoUser = await EnsureUserAsync(
             userManager,
             "user@taskmanager.local",
@@ -47,7 +48,7 @@ public static class DatabaseSeeder
             "Demo User",
             RoleNames.User);
 
-        // Stop here if the sample board was already added before.
+        //I f boards already exist, it does not seed the sample board again.
         if (await context.Boards.AnyAsync())
         {
             return;
@@ -64,7 +65,7 @@ public static class DatabaseSeeder
         context.Boards.Add(board);
         await context.SaveChangesAsync();
 
-        // Create the default Kanban columns.
+        // Create the default Kanban columns
         var todoList = new BoardList
         {
             BoardId = board.Id,
@@ -92,7 +93,7 @@ public static class DatabaseSeeder
         context.BoardLists.AddRange(todoList, progressList, doneList);
         await context.SaveChangesAsync();
 
-        // Add a few sample tasks so the app is not empty on first run.
+        // Add a few sample tasks so the app is not empty on first run
         context.Tasks.AddRange(
             new TaskItem
             {
@@ -135,6 +136,7 @@ public static class DatabaseSeeder
         await context.SaveChangesAsync();
     }
 
+    // Helper method EnsureUserAsync(...), which creates a user if needed and assigns a role
     private static async Task<ApplicationUser> EnsureUserAsync(
         UserManager<ApplicationUser> userManager,
         string email,
@@ -142,7 +144,7 @@ public static class DatabaseSeeder
         string fullName,
         string role)
     {
-        // Reuse the user if it already exists.
+        // Reuse the user if it already exists
         var user = await userManager.FindByEmailAsync(email);
         if (user == null)
         {
@@ -157,13 +159,13 @@ public static class DatabaseSeeder
             var result = await userManager.CreateAsync(user, password);
             if (!result.Succeeded)
             {
-                // Show a clear error if seeding fails.
+                // Show a clear error if seeding fails
                 var errors = string.Join(", ", result.Errors.Select(e => e.Description));
                 throw new InvalidOperationException($"Could not seed user {email}: {errors}");
             }
         }
 
-        // Make sure the user has the expected role.
+        // Make sure the user has the expected role
         if (!await userManager.IsInRoleAsync(user, role))
         {
             await userManager.AddToRoleAsync(user, role);

@@ -6,7 +6,7 @@ namespace TaskManager.Models.Entities;
 
 public class TaskItem : BaseEntity
 {
-    // Task title shown in cards and tables.
+    // Task title shown in cards and tables
     [Required]
     [StringLength(100)]
     public string Title { get; set; } = string.Empty;
@@ -15,19 +15,19 @@ public class TaskItem : BaseEntity
     [StringLength(1000)]
     public string Description { get; set; } = string.Empty;
 
-    // Optional deadline for the task.
+    // Optional deadline for the task
     public DateTime? Deadline { get; set; }
 
-    // How important the task is.
+    // How important the task is/enum priority
     public Priority Priority { get; set; }
 
-    // Current workflow status.
+    // Current workflow enum status
     public TaskItemStatus Status { get; set; }
 
-    // Keeps the task order inside the list.
+    // Keeps the task order inside the list
     public int Position { get; set; }
 
-    // Filled when the task is completed.
+    // Filled when the task is completed
     public DateTime? CompletedAt { get; set; }
 
     public int BoardId { get; set; }
@@ -38,7 +38,7 @@ public class TaskItem : BaseEntity
 
     public BoardList BoardList { get; set; } = null!;
 
-    // The user assigned to work on the task.
+    // The user assigned to work on the task
     public string? AssignedToId { get; set; }
 
     public ApplicationUser? AssignedTo { get; set; }

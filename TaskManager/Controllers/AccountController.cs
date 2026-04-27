@@ -9,6 +9,7 @@ namespace TaskManager.Controllers;
 
 public class AccountController : Controller
 {
+    
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserManager<ApplicationUser> _userManager;
 
